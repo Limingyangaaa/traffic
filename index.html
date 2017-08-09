@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <meta content=always name=referrer>
+    <title>城市公交客流查询系统</title>
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="./css/daterangepicker.css" />
+    <link rel="stylesheet" href="./css/ol.css">
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.js"></script>
+    <script type="text/javascript" src="./js/moment.js"></script>
+    <script type="text/javascript" src="./js/daterangepicker.js"></script>
+    <script src="./js/ol-debug.js"></script>
+    <script src="./js/map.js"></script>
+
+
+    <link rel="stylesheet" href="./css/index.css">
+	 
+    <script src="./js/app.js"></script>
+    
+    
+	<script src="./js/datetime.js"></script>
+	<script src="./js/extendpagination.js"></script>
+</head>
+	
+<body>
+	<div class="li-wrapper">
+		<div class="wrapper-header" >
+			<!--导航条-->
+				<div class="li-container-fluid">
+					<div class="nav-left">
+            <img src="./img/system.png" alt="logo" class="nav-brand" height="24px">
+            <img src="./img/title.png" title="返回地图" class="nav-title" height="24px">
+					</div>
+					<div class="nav-account">
+						<img src="./img/user.png" class="nav-img-user">
+						<div class="loging-item1 loging-item"><span class='admin-name'></span></div>
+						<img src="./img/out.png" class="nav-img-out">
+						<div class="loging-item2 loging-item"><span class='admin-exit'>安全退出</span></div>
+					</div>
+				</div>
+		</div>
+
+		<div class="li-container" >
+			<div class="li-container-main-map">
+				<div id="map" style="width: 100%;height: 100%;"></div>
+			</div>
+			<div class="li-container-main-info">
+				<div class="info-body" >
+					<div class="info-header">
+						<div class="info-header-nav">
+							<div class="bus-item">
+								<img src="./img/bus1.png" alt="" class="info-header-bus">
+								<span class="info-header-count"><span class="info-header-num"></span><span>路</span></span>
+							</div>
+							<img src="./img/info.png" alt="" class="info-header-img">
+							
+						</div>
+						<div class="info-header-main">
+							<div class="header-main-detail li-info-item">
+								<span class="li-info-detail">班次详情</span>
+							</div>
+							<div class="header-main-car li-info-item">
+								<img src="./img/car.png" alt="">
+								<span class="li-info-detail">车牌号</span>
+								<span class="bus-select select">请选择班次</span>
+							</div>
+
+							<div class="header-main-round li-info-item">
+								<img src="./img/round.png" alt="">
+								<span class="li-info-detail">上下行站点</span>
+								<span class="station-select select">请选择班次</span>
+							</div>
+						</div>
+						<div class="info-header-footer" >
+							<div class="footer-logo">
+								<img src="./img/bus.png"  class="loading-bus">
+								<img src="./img/loading-search.png" class="loading-search" style="display:none;">
+								<span class="logo-detail">请选择班次</span>
+							</div>
+							<div class="footer-road">
+								<div class="roadList" >
+								<span class="road-item road-first"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item"></span>
+                <span class="load-item"></span>
+                <span class="road-item road-last"></span>
+                </div>
+							</div>
+						</div>
+					</div>
+					<div class="info-main" >
+						<div class="info-main-nav"></div>
+						<div class="info-footer-nav">
+							<div class="nav-page-change1">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="li-container-right">
+				<div class="right-search">
+					<div class="search-box">
+						<span class="search-box-item datetime" id="datetime" placeholder="请选择时间段"></span>
+						<img src="./img/date2.png" alt="" class="date1">
+						<img src="./img/date1.png" alt="" style="display:none;" class="date2">
+						<div class="search-btn"><img src="./img/search.png" alt=""><div class="search-cotent">查询</div></div>
+					</div>
+				</div>
+				<div class="right-info">
+					<div class="right-inner">
+						<div class="info-road info-item">
+							<div class="info-img">
+								<img src="./img/road.png" alt="" class="img1" >
+							</div>
+							<span class="list-item">路名ID</span>
+						</div>
+						<div class="info-count info-item">
+							<div class="info-img">
+								<img src="./img/line.png" alt="" class="img2">
+							</div>
+							<span class="list-item">线路数</span>
+						</div>
+						<div class="info-total info-item">
+							<div class="info-img">
+								<img src="./img/class.png" alt="" class="img3">
+							</div>
+							<span class="list-item">班次总数</span>
+						</div>
+					</div>
+				</div>
+				<div class="right-load"></div>
+				<div class="right-warner">
+						<img src="./img/warner.png" alt="" class="warner-img">
+					<div class="warner-text">
+						<span>未选择查询条件</span>
+					</div>
+				</div>
+				<div class="right-list"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="./js/index.js"></script>
+</body>
+</html>

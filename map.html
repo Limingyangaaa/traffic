@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <meta content=always name=referrer>
+    <title>OpenLayers 3地图示例</title>
+    <link rel="stylesheet" href="./css/ol.css">
+    <script src="./js/ol-debug.js"></script>
+</head>
+<body>
+	<div id="map" style="width: 100%"></div>
+    <script>
+    var openMapLayer=new ol.layer.Tile({
+    	source:new ol.source.XYZ({
+    		url:'http://webst0{1-4}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=7&x={x}&y={y}&z={z}'
+    	})
+    })
+    
+
+      new ol.Map({
+      	controls:ol.control.defaults({
+      		attributionOptions:({
+      			collapsible:false
+      		})
+      	}),
+      	logo:{src:'./img/bus.png',href: 'http://www.openstreetmap.org/'},
+   
+      	layers:[
+      		openMapLayer
+      	],
+
+      	view:new ol.View({
+      		center:[113.90, 22.30],
+      		projection:'EPSG:4326',
+      		zoom:10
+      	}),
+      	target: 'map'
+      })
+    </script>
+</body>
+</html>
